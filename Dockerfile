@@ -2,15 +2,15 @@
 # Dockerfile that builds a Post Scriptum Gameserver
 ############################################################
 FROM cm2network/steamcmd
-LABEL maintainer="avilcreeggan@gmail.com"
+LABEL maintainer="brainp4in@blueberry-hood-clan.de"
 
 # Run Steamcmd and install Squad
 RUN ./home/steam/steamcmd/steamcmd.sh +login anonymous \
         +force_install_dir /home/steam/post-scriptum-dedicated \
-        +app_update 844650 validate \
+        +app_update 746200 validate \
         +quit
 
-ENV PORT=7787 QUERYPORT=27165 RCONPORT=21114 FIXEDMAXPLAYERS=80 RANDOM=NONE
+ENV PORT=10027 QUERYPORT=10037 RCONPORT=21114 FIXEDMAXPLAYERS=80 RANDOM=NONE
 
 VOLUME /home/steam/post-scriptum-dedicated
 
@@ -19,4 +19,4 @@ ENTRYPOINT ./home/steam/steamcmd/steamcmd.sh +login anonymous +force_install_dir
         ./home/steam/post-scriptum-dedicated/PostScriptumServer.sh Port=$PORT QueryPort=$QUERYPORT RCONPORT=$RCONPORT FIXEDMAXPLAYERS=$FIXEDMAXPLAYERS RANDOM=$RANDOM
         
 # Expose ports
-EXPOSE 7787 27165 21114
+EXPOSE 10027 10037 21114
